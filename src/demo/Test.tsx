@@ -33,6 +33,8 @@ export function Test() {
           process.stdout.write('\x1b[?1000l');
           setIsSubmitted(true)
 
+          console.log(value)
+
           setTimeout(() => {
             stdout.write('Hihi\n');
           }, 1000)

@@ -14,7 +14,6 @@ import { FullScreen, useStdoutDimensions } from './FullScreen.js';
 export const Form: React.FC<FormProps> = props => {
   const isControlled = props.value !== undefined;
   const [currentTab, setCurrentTab] = useState(0);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [sections, setSections] = useState(props.form.sections);
   const form = { ...props.form, sections }
   const [value, setValue] = useState<Array<Record<string, unknown>>>(props.value ?? Array.from({ length: sections.length }, () => ({})));
@@ -63,6 +62,15 @@ export const Form: React.FC<FormProps> = props => {
     setValue(structuredClone(value));
     props.onChange?.(value);
   };
+
+  const onSubmitForm = () => {
+    const formattedValue = value.map((v, index) => ({
+      section: sections[index],
+      value: v
+    }))
+
+    props.onSubmit?.(formattedValue)
+  }
 
   useInput(
     (input, key) => {
@@ -168,10 +176,7 @@ export const Form: React.FC<FormProps> = props => {
                   <Button label="Remove" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()}/>
                 </Box>
                 <Box flexDirection="row-reverse">
-                  <SubmitButton canSubmit={canSubmitForm} onSubmit={() => {
-                    props.onSubmit?.(value)
-                    setIsSubmitted(true);
-                  }}/>
+                  <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
                 </Box>
               </Box>
             </Box>
