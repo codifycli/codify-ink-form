@@ -32,7 +32,7 @@ export interface FormProps {
    *
    * @param value the final value of the form.
    * */
-  onSubmit?: (value: Array<Record<string, any>>) => void;
+  onSubmit?: (output: FormReturnValue) => void;
 
   /**
    * You can use custom field implementations, by specifying their ``type`` attribute to a custom
@@ -204,3 +204,8 @@ export type SpecificFormFieldRendererProps<T extends FormField> = FormFieldRende
   onSave: (newValue?: ValueOfField<T>) => void;
   onCancel: () => void;
 };
+
+export type FormReturnValue = Array<{
+  section: FormSection;
+  value: Record<string, unknown>;
+}>
