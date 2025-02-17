@@ -112,6 +112,7 @@ export const Form: React.FC<FormProps> = props => {
 
     setSections(newTabs);
     setValue([...value]);
+    onChangeTab(currentTab + 1)
   }
 
   const removeCurrentSection = () => {
@@ -121,7 +122,7 @@ export const Form: React.FC<FormProps> = props => {
 
     setSections(newTabs);
     setValue([...value]);
-    onChangeTab(Math.max(currentTab - 1, 0))
+    onChangeTab(Math.min(currentTab, sections.length - 2));
   }
 
   return (
