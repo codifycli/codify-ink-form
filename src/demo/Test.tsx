@@ -46,8 +46,8 @@ export function Test() {
             {
               title: "asdf-global",
               fields: [
-                { type: 'string', name: 'plugin', label: 'plugin', required: true },
-                { type: 'string', name: 'version', label: 'version', required: true },
+                { type: 'string', name: 'plugin', label: 'plugin', required: true, description: 'The plugin to install' },
+                { type: 'string', name: 'version', label: 'version', required: true, description: 'The version to install' },
               ],
               description: 'Asdf global sets the global version of a asdf installed plugin.'
             },

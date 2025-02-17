@@ -125,6 +125,13 @@ export const Form: React.FC<FormProps> = props => {
     onChangeTab(Math.min(currentTab, sections.length - 2));
   }
 
+  const upperFirstLetter = (s?: string): string | undefined => {
+    if (!s) {
+      return s;
+    }
+    return s.charAt(0).toUpperCase() + s.slice(1)
+  }
+
   return (
     <FullScreen>
       <Box width="100%" height="90%" flexDirection="column" overflowY="hidden">
@@ -166,6 +173,15 @@ export const Form: React.FC<FormProps> = props => {
                   <Box marginX={1} flexDirection='column'>
                     <Text underline>Description:</Text>
                     <DescriptionRenderer description={sections[currentTab]?.description} />
+                    {
+                      sections[currentTab].fields[focusedElement]?.description && (
+                        <Box flexDirection="column">
+                          <Text> </Text>
+                          <Text underline>{upperFirstLetter(sections[currentTab].fields[focusedElement]?.label)}:</Text>
+                          <DescriptionRenderer description={sections[currentTab].fields[focusedElement]?.description} />
+                        </Box>
+                      )
+                    }
                   </Box>
                 )}
               </Box>
