@@ -32,8 +32,12 @@ export const FormHeader: React.FC<
     <Box borderStyle="double" width="100%" flexDirection="column" ref={props.headerRef}>
       <Box width="100%">
         <Box flexGrow={1}>
-          <Text bold>{props.form.title}</Text>
-          <Text color={'gray'}>{` (${props.form.description})`}</Text>
+          <Text>
+            <Text bold>{props.form.title}</Text>
+            { props.form.description && (
+              <Text color={'gray'}>{` (${props.form.description})`}</Text>
+            )}
+          </Text>
         </Box>
       </Box>
       <Box width="100%">

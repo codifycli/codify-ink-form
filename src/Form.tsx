@@ -151,7 +151,7 @@ export const Form: React.FC<FormProps> = props => {
         <FormHeader {...props} headerRef={headerRef} form={form} currentTab={currentTab} onChangeTab={onChangeTab} editingField={editingField} />
         <ScrollArea height={fullHeight - headerHeight} key={currentTab} isStart={focusedElement === -1} numFields={sections[currentTab].fields.length} editingMode={!!editingField}>
           <Box flexDirection='row'>
-            <Box flexDirection='column' width='80%'>
+            <Box flexDirection='column' width='70%'>
               {!editingField && (
                 <Box flexDirection='column'>
                   <Box marginLeft={1} marginTop={1}>
@@ -182,27 +182,30 @@ export const Form: React.FC<FormProps> = props => {
                 )}
               </Box>
             </Box>
-
-            <Box flexDirection="column">
-              {!editingField && sections[currentTab].description && (
-                <Box marginX={1} marginTop={1} flexDirection='column'>
-                  <Text underline>Description:</Text>
-                  <DescriptionRenderer description={sections[currentTab]?.description} />
-                </Box>
-              )}
+            <Box flexDirection="column" width="30%" >
+              {
+                !editingField && sections[currentTab].fields[focusedElement]?.description && (
+                  <Box flexDirection="column">
+                    <Text> </Text>
+                    <Text underline>{upperFirstLetter(sections[currentTab].fields[focusedElement]?.label)}:</Text>
+                    <DescriptionRenderer description={sections[currentTab].fields[focusedElement]?.description} />
+                  </Box>
+                )
+              }
             </Box>
 
           </Box>
           {!editingField && (
             <Box flexDirection='column' marginTop={1}>
               <Box flexDirection="row">
-                <Button label="[A]dd resource" id={'addButton'} onClicked={() => duplicateCurrentSection()} margin={0} padding={0}/>
-                <Button label="[R]emove resource" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()} margin={0} padding={0}/>
+                <Button label="[D]uplicate resource" id={'addButton'} onClicked={() => duplicateCurrentSection()}/>
+                <Button label="[R]emove resource" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()}/>
                 <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
               </Box>
+              <Text dimColor color='gray'> Provide all required information (<Text color="red">*</Text>) to submit.</Text>
               <Text dimColor color='gray'> Up/down: navigate options.</Text>
               <Text dimColor color='gray'> Left/right: navigate between resources.</Text>
-              <Text dimColor color='gray'> Enter: select or edit</Text>
+              <Text dimColor color='gray'> Enter: select or edit.</Text>
             </Box>
 
             // </Box>

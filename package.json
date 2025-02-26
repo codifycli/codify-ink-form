@@ -1,7 +1,7 @@
 {
   "name": "@codifycli/ink-form",
   "type": "module",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Complex user-friendly form component for Codify",
   "main": "lib/index.js",
   "exports": "./lib/index.js",
@@ -45,7 +45,8 @@
     "lint": "prettier --check .",
     "prettier:check": "prettier --check .",
     "prettier:write": "prettier --write .",
-    "release": "publish-fast"
+    "release": "publish-fast",
+    "prepublishOnly": "tsc"
   },
   "peerDependencies": {
     "ink": ">=5",

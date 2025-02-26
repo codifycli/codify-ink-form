@@ -40,8 +40,8 @@ export function Test() {
           }, 1000)
         }}
         form={{
-          title: "codify import",
-          description: 'some parameters are required to continue import',
+          title: "Need more info to identify resources for import",
+          description: 'multiples could exist',
           sections: [
             {
               title: "asdf-global",
