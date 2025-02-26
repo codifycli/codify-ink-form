@@ -41,7 +41,7 @@ export function Test() {
         }}
         form={{
           title: "Need more info to identify resources for import",
-          description: 'multiples could exist',
+          description: 'multiples could exist on the system',
           sections: [
             {
               title: "asdf-global",

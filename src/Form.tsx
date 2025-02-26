@@ -135,7 +135,7 @@ export const Form: React.FC<FormProps> = props => {
 
     setSections(newTabs);
     setValue([...value]);
-    onChangeTab(Math.min(currentTab, sections.length - 2));
+    onChangeTab(Math.max(currentTab - 1, 0));
   }
 
   const upperFirstLetter = (s?: string): string | undefined => {
@@ -198,7 +198,7 @@ export const Form: React.FC<FormProps> = props => {
           {!editingField && (
             <Box flexDirection='column' marginTop={1}>
               <Box flexDirection="row">
-                <Button label="[D]uplicate resource" id={'addButton'} onClicked={() => duplicateCurrentSection()}/>
+                <Button label="[A]dd resource" id={'addButton'} onClicked={() => duplicateCurrentSection()}/>
                 <Button label="[R]emove resource" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()}/>
                 <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
               </Box>

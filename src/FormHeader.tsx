@@ -29,8 +29,12 @@ export const FormHeader: React.FC<
   );
 
   return (
-    <Box borderStyle="double" width="100%" flexDirection="column" ref={props.headerRef}>
-      <Box width="100%">
+    <Box
+      borderStyle="single"
+      width="100%"
+      flexDirection="column"
+      ref={props.headerRef}>
+      <Box width="100%" marginBottom={1}>
         <Box flexGrow={1}>
           <Text>
             <Text bold>{props.form.title}</Text>
@@ -40,7 +44,7 @@ export const FormHeader: React.FC<
           </Text>
         </Box>
       </Box>
-      <Box width="100%">
+      <Box width="100%" marginBottom={0}>
         <Box flexWrap='wrap'>
           {!props.editingField ? (
             sections.map((section, id) => (
