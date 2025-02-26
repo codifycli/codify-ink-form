@@ -20,7 +20,7 @@ export function Button(props: {
     }
   });
 
-  return <Box marginX={2} paddingX={1} borderStyle="round" borderColor={!isEnabled ? 'gray' : isFocused ? 'blue' : 'magenta'}>
+  return <Box borderStyle="round" borderColor={!isEnabled ? 'gray' : isFocused ? 'blue' : 'magenta'}>
     <Box flexGrow={1}>
       <Text underline={isFocused} color={isFocused ? 'blue' : undefined}>
         {props.label}

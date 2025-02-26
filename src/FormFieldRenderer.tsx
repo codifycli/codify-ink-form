@@ -75,11 +75,11 @@ export const FormFieldRenderer: React.FC<FormFieldRendererProps<any>> = props =>
             </Text>
           </Text>
         </Box>
-        {isFocused && (
-          <Box>
-            <Text>Press enter to edit</Text>
-          </Box>
-        )}
+        {/*{isFocused && (*/}
+        {/*  <Box>*/}
+        {/*    <Text>Press enter to edit</Text>*/}
+        {/*  </Box>*/}
+        {/*)}*/}
       </Box>
     );
   } else {

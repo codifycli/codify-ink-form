@@ -98,6 +98,20 @@ export const Form: React.FC<FormProps> = props => {
       if (key.escape) {
         focusManager.focus('0');
         setFocusedElement(0);
+        return;
+      }
+
+      if (input === 'a') {
+        duplicateCurrentSection();
+        return;
+      }
+
+      if (input === 'r' && sections.length > 1) {
+        removeCurrentSection();
+      }
+
+      if (input === 's' && canSubmitForm) {
+        onSubmitForm();
       }
     },
     { isActive: !editingField }
@@ -112,7 +126,6 @@ export const Form: React.FC<FormProps> = props => {
 
     setSections(newTabs);
     setValue([...value]);
-    onChangeTab(currentTab + 1)
   }
 
   const removeCurrentSection = () => {
@@ -137,66 +150,62 @@ export const Form: React.FC<FormProps> = props => {
       <Box width="100%" height="90%" flexDirection="column" overflowY="hidden">
         <FormHeader {...props} headerRef={headerRef} form={form} currentTab={currentTab} onChangeTab={onChangeTab} editingField={editingField} />
         <ScrollArea height={fullHeight - headerHeight} key={currentTab} isStart={focusedElement === -1} numFields={sections[currentTab].fields.length} editingMode={!!editingField}>
-          {!editingField && (
-            <Box flexDirection='column'>
-              <Box marginLeft={1} marginTop={1}>
-                <Text bold>{sections[currentTab].title}</Text>
-              </Box>
-              <Text>{' {'}</Text>
-            </Box>
-          )}
-          <Box flexDirection="column">
-            {currentTab > sections.length - 1
-              ? null
-              : sections[currentTab].fields.map((field, index) => (
-                <FormFieldRenderer
-                  id={`${index}`}
-                  field={field}
-                  key={field.name + currentTab}
-                  form={form}
-                  value={value[currentTab][field.name]}
-                  onExit={onFieldExit}
-                  onChange={v => setValueAndPropagate(currentTab, { ...value[currentTab], [field.name]: v })}
-                  onSetEditingField={setEditingField}
-                  editingField={editingField}
-                  customManagers={props.customManagers}
-                />
-              ))}
-            {!editingField && (
-              <Text>{' }'}</Text>
-            )}
-          </Box>
-          {!editingField && (
-            <Box flexDirection="row" marginTop={1}>
-              <Box flexDirection="column" flexGrow={1} width='40%'>
-                {!editingField && sections[currentTab].description && (
-                  <Box marginX={1} flexDirection='column'>
-                    <Text underline>Description:</Text>
-                    <DescriptionRenderer description={sections[currentTab]?.description} />
-                    {
-                      sections[currentTab].fields[focusedElement]?.description && (
-                        <Box flexDirection="column">
-                          <Text> </Text>
-                          <Text underline>{upperFirstLetter(sections[currentTab].fields[focusedElement]?.label)}:</Text>
-                          <DescriptionRenderer description={sections[currentTab].fields[focusedElement]?.description} />
-                        </Box>
-                      )
-                    }
+          <Box flexDirection='row'>
+            <Box flexDirection='column' width='80%'>
+              {!editingField && (
+                <Box flexDirection='column'>
+                  <Box marginLeft={1} marginTop={1}>
+                    <Text bold>{sections[currentTab].title}</Text>
                   </Box>
+                  <Text>{' {'}</Text>
+                </Box>
+              )}
+              <Box flexDirection="column">
+                {currentTab > sections.length - 1
+                  ? null
+                  : sections[currentTab].fields.map((field, index) => (
+                    <FormFieldRenderer
+                      id={`${index}`}
+                      field={field}
+                      key={field.name + currentTab}
+                      form={form}
+                      value={value[currentTab][field.name]}
+                      onExit={onFieldExit}
+                      onChange={v => setValueAndPropagate(currentTab, { ...value[currentTab], [field.name]: v })}
+                      onSetEditingField={setEditingField}
+                      editingField={editingField}
+                      customManagers={props.customManagers}
+                    />
+                  ))}
+                {!editingField && (
+                  <Text>{' }'}</Text>
                 )}
               </Box>
-              <Box flexDirection="column" flexGrow={1} width='40%'>
-                <Box flexDirection="row-reverse">
-                  <Button label="Add (duplicate)" id={'addButton'} onClicked={() => duplicateCurrentSection()}/>
-                </Box>
-                <Box flexDirection="row-reverse">
-                  <Button label="Remove" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()}/>
-                </Box>
-                <Box flexDirection="row-reverse">
-                  <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
-                </Box>
-              </Box>
             </Box>
+
+            <Box flexDirection="column">
+              {!editingField && sections[currentTab].description && (
+                <Box marginX={1} marginTop={1} flexDirection='column'>
+                  <Text underline>Description:</Text>
+                  <DescriptionRenderer description={sections[currentTab]?.description} />
+                </Box>
+              )}
+            </Box>
+
+          </Box>
+          {!editingField && (
+            <Box flexDirection='column' marginTop={1}>
+              <Box flexDirection="row">
+                <Button label="[A]dd resource" id={'addButton'} onClicked={() => duplicateCurrentSection()} margin={0} padding={0}/>
+                <Button label="[R]emove resource" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()} margin={0} padding={0}/>
+                <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
+              </Box>
+              <Text dimColor color='gray'> Up/down: navigate options.</Text>
+              <Text dimColor color='gray'> Left/right: navigate between resources.</Text>
+              <Text dimColor color='gray'> Enter: select or edit</Text>
+            </Box>
+
+            // </Box>
           )}
         </ScrollArea>
       </Box>
