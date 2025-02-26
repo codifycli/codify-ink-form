@@ -1,7 +1,7 @@
 {
   "name": "@codifycli/ink-form",
   "type": "module",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Complex user-friendly form component for Codify",
   "main": "lib/index.js",
   "exports": "./lib/index.js",

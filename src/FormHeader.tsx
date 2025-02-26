@@ -41,7 +41,7 @@ export const FormHeader: React.FC<
         </Box>
       </Box>
       <Box width="100%">
-        <Box>
+        <Box flexWrap='wrap'>
           {!props.editingField ? (
             sections.map((section, id) => (
               <Box key={section.title + id}>
