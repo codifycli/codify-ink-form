@@ -64,7 +64,7 @@ export const FormFieldRenderer: React.FC<FormFieldRendererProps<any>> = props =>
     return (
       <Box paddingX={1}>
         <Box flexGrow={1}>
-          <Text backgroundColor={isFocused ? 'magentaBright' : undefined}>
+          <Text >
             <Text>
               {`${isFocused ? '> ' : '  '}${(props.field.label ?? props.field.name)}`}
             </Text>

@@ -158,7 +158,7 @@ export const Form: React.FC<FormProps> = props => {
               {!editingField && (
                 <Box flexDirection='column'>
                   <Box marginLeft={1} marginTop={1}>
-                    <Text bold>{sections[currentTab].title}</Text>
+                    <Text bold backgroundColor='magentaBright'>{sections[currentTab].title}</Text>
                   </Box>
                   <Text>{' {'}</Text>
                 </Box>
