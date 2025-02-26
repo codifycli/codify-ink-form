@@ -20,13 +20,14 @@ export const Form: React.FC<FormProps> = props => {
   const [editingField, setEditingField] = useState<string>();
   const canSubmitForm = useMemo(() => canSubmit(form, value), [value, form]);
   const focusManager = useFocusManager();
-  const [focusedElement, setFocusedElement] = useState(-1); // this is -1 because there is no initial focus. The first down click will focus on element 0
+  const [focusedElement, setFocusedElement] = useState(0); // this is -1 because there is no initial focus. The first down click will focus on element 0
   const headerRef = useRef();
   const headerHeight = headerRef.current ? measureElement(headerRef.current).height : 5
   const [, fullHeight] = useStdoutDimensions()
 
   useEffect(() => {
     focusManager.enableFocus();
+    setTimeout(() => focusManager.focusNext(), 50)
   }, []);
 
   useEffect(() => {
@@ -54,7 +55,8 @@ export const Form: React.FC<FormProps> = props => {
 
   const onChangeTab = (tab: number) => {
     setCurrentTab(tab);
-    setFocusedElement(-1)
+    setFocusedElement(0)
+    setTimeout(() => focusManager.focusNext(), 50)
   }
 
   const setValueAndPropagate = (index: number, newValue: Record<string, unknown>) => {
@@ -84,7 +86,7 @@ export const Form: React.FC<FormProps> = props => {
       } else if (key.downArrow) {
         // This calculates the maximum amount of children there is. We don't want to scroll past the last item
         // Fields.length is number of json fields. 2 is the add and remove buttons. Submit button is sometimes focusable
-        const totalFocusableElements = sections[currentTab].fields.length + 2 + (canSubmitForm ? 1 : 0) + ((sections.length <= 1) ? -1 : 0)
+        const totalFocusableElements = sections[currentTab].fields.length + (canSubmitForm ? 1 : 0)
         if (focusedElement + 1 >= totalFocusableElements) {
           return;
         }
@@ -126,6 +128,7 @@ export const Form: React.FC<FormProps> = props => {
 
     setSections(newTabs);
     setValue([...value]);
+    onChangeTab(Math.min(currentTab + 1, newTabs.length - 1));
   }
 
   const removeCurrentSection = () => {
@@ -198,14 +201,13 @@ export const Form: React.FC<FormProps> = props => {
           {!editingField && (
             <Box flexDirection='column' marginTop={1}>
               <Box flexDirection="row">
-                <Button label="[A]dd resource" id={'addButton'} onClicked={() => duplicateCurrentSection()}/>
-                <Button label="[R]emove resource" id={'removeButton'} isEnabled={sections.length > 1} onClicked={() => removeCurrentSection()}/>
                 <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
               </Box>
-              <Text dimColor color='gray'> Provide all required information (<Text color="red">*</Text>) to submit.</Text>
-              <Text dimColor color='gray'> Up/down: navigate options.</Text>
-              <Text dimColor color='gray'> Left/right: navigate between resources.</Text>
-              <Text dimColor color='gray'> Enter: select or edit.</Text>
+              <Text color='gray'> Up/down: navigate between parameters.</Text>
+              <Text color='gray'> Left/right: navigate between resources.</Text>
+              <Text color='gray'> Enter: select or edit.</Text>
+              <Text color='gray'> [A]: add an additional instance.</Text>
+              <Text color='gray'> [R]: remove import.</Text>
             </Box>
 
             // </Box>

@@ -40,8 +40,8 @@ export function Test() {
           }, 1000)
         }}
         form={{
-          title: "Need more info to identify resources for import",
-          description: 'multiples could exist on the system',
+          title: "Identify which instance to import",
+          description: 'fill out the required information to submit',
           sections: [
             {
               title: "asdf-global",

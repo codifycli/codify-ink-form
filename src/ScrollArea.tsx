@@ -49,7 +49,7 @@ export function ScrollArea({height, isStart, children, numFields, editingMode}) 
     // isStart ensures that the first down event will not scroll. This is because initially nothing has focus so the first down gives focus to the first element
     // The children.length calculation calculates a rough estimate of the total height. The 3 is the height of the buttons at the bottom.
     // The 5 is the fixed length of the static elements
-    if (isStart || ((numFields + (3 * 3) + 5) < height)) {
+    if (isStart || ((numFields + 13) < height)) {
       setCanScroll(false);
       dispatch({
         type: 'RESET'

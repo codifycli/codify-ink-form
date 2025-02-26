@@ -16,7 +16,7 @@ export const SubmitButton: React.FC<{
     <Box marginRight={2}>
       <Box borderStyle={'round'} borderColor={!props.canSubmit ? 'gray' : isFocused ? 'blue' : 'green'} paddingX={2}>
         <Text color={!props.canSubmit ? 'gray' : isFocused ? 'blue' : 'green'} bold={true} underline={isFocused}>
-          {props.canSubmit ? '[S]ubmit' : 'Cannot submit yet'}
+          {props.canSubmit ? '[s] Submit' : 'Cannot submit yet'}
         </Text>
       </Box>
     </Box>

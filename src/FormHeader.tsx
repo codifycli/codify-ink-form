@@ -32,6 +32,7 @@ export const FormHeader: React.FC<
     <Box
       borderStyle="single"
       width="100%"
+      paddingBottom={1}
       flexDirection="column"
       ref={props.headerRef}>
       <Box width="100%" marginBottom={1}>

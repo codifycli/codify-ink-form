@@ -73,13 +73,11 @@ export const FormFieldRenderer: React.FC<FormFieldRendererProps<any>> = props =>
             <Text dimColor>
               <RenderValue value={props.value as any ?? '<undefined>'} field={props.field} />
             </Text>
+            {isFocused && (
+              <Text color='gray' dimColor>     (enter to edit)</Text>
+            )}
           </Text>
         </Box>
-        {/*{isFocused && (*/}
-        {/*  <Box>*/}
-        {/*    <Text>Press enter to edit</Text>*/}
-        {/*  </Box>*/}
-        {/*)}*/}
       </Box>
     );
   } else {
