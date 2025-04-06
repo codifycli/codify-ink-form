@@ -158,7 +158,7 @@ export const Form: React.FC<FormProps> = props => {
               {!editingField && (
                 <Box flexDirection='column'>
                   <Box marginLeft={1} marginTop={1}>
-                    <Text bold backgroundColor='magentaBright'>{sections[currentTab].title}</Text>
+                    <Text bold>{sections[currentTab].title}</Text>
                   </Box>
                   <Text>{' {'}</Text>
                 </Box>
@@ -203,11 +203,11 @@ export const Form: React.FC<FormProps> = props => {
               <Box flexDirection="row">
                 <SubmitButton canSubmit={canSubmitForm} onSubmit={onSubmitForm}/>
               </Box>
-              <Text color='gray'> Up/down: navigate between parameters.</Text>
-              <Text color='gray'> Left/right: navigate between resources.</Text>
-              <Text color='gray'> Enter: select or edit.</Text>
-              <Text color='gray'> [A]: add an additional instance.</Text>
-              <Text color='gray'> [R]: remove import.</Text>
+              <Text color='gray' dimColor> Up/down: navigate between parameters.</Text>
+              <Text color='gray' dimColor> Left/right: navigate between resources.</Text>
+              <Text color='gray' dimColor> Enter: select or edit.</Text>
+              <Text color='gray' dimColor> [A]: add an additional instance.</Text>
+              <Text color='gray' dimColor> [R]: remove import.</Text>
             </Box>
 
             // </Box>

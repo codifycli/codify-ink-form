@@ -76,41 +76,7 @@ export function Test() {
                 { type: 'string', name: 'versions', label: 'version'},
                 { type: 'string', name: 'gitUrl', label: 'gitUrl' },
               ]
-            },
-            {
-              title: "asdf-global2",
-              fields: [
-                { type: 'string', name: 'plugin', label: 'plugin', required: true, description: 'The plugin to install' },
-                { type: 'string', name: 'version', label: 'version', required: true, description: 'The version to install' },
-              ],
-              description: 'Asdf global sets the global version of a asdf installed plugin.'
-            },
-            {
-              title: "asdf-install2",
-              description: 'Asdf install is responsible for installing an asdf resource',
-              fields: [
-                { type: 'string', name: 'directory', label: 'directory', required: true, description: 'The directory to install.' },
-              ]
-            },
-            {
-              title: "asdf-local2",
-              description: 'Asdf global sets the local version of a asdf installed plugin.',
-              fields: [
-                { type: 'string', name: 'plugin', label: 'plugin', required: true },
-                { type: 'string', name: 'version', label: 'version', required: true },
-                { type: 'string', name: 'directory', label: 'directory' },
-                { type: 'array', name: 'directories', label: 'directories' },
-              ]
-            },
-            {
-              title: "asdf-plugin2",
-              // description: 'Asdf plugin installs a plugin.',
-              fields: [
-                { type: 'string', name: 'plugin', label: 'plugin', required: true },
-                { type: 'string', name: 'versions', label: 'version'},
-                { type: 'string', name: 'gitUrl', label: 'gitUrl' },
-              ]
-            },
+            }
           ]
         }}
       />
