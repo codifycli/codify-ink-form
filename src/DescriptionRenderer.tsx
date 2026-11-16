@@ -5,8 +5,8 @@ import { Box, Text } from 'ink';
 export const DescriptionRenderer: React.FC<{ description: Description }> = props => {
   if (!props.description) {
     return null;
-  } else if ((props.description as JSX.Element).type) {
-    return props.description as JSX.Element;
+  } else if ((props.description as React.JSX.Element).type) {
+    return props.description as React.JSX.Element;
   } else if (Array.isArray(props.description)) {
     return (
       <Box flexDirection="column">

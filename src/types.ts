@@ -2,10 +2,10 @@ import React from 'react';
 
 /**
  * A description for either a field or a section. If undefined or false, it will not be shown.
- * If its a JSX.Element, it will be rendered as description. If its a string, the string
+ * If its a React.JSX.Element, it will be rendered as description. If its a string, the string
  * will be rendered. If its an array of strings, they will be rendered as distinctive paragraphs.
  */
-export type Description = string | string[] | JSX.Element | undefined | false;
+export type Description = string | string[] | React.JSX.Element | undefined | false;
 
 /**
  * The input structure for creating a new form, either by directly rendering it as component in
