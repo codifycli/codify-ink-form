@@ -81,7 +81,7 @@ export const FormFieldRenderer: React.FC<FormFieldRendererProps<any>> = props =>
       </Box>
     );
   } else {
-    let component: JSX.Element;
+    let component: React.JSX.Element;
     const rendererProps: SpecificFormFieldRendererProps<FormField> = {
       ...props,
       onError: setError,
